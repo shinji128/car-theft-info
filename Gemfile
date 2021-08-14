@@ -13,7 +13,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
+gem 'bulma-rails'
 
 group :development, :test do
   # Debugger
@@ -30,6 +30,7 @@ group :development, :test do
   gem 'rails_best_practices'
   gem 'rubocop-rails'
   gem 'slim_lint'
+  gem "html2slim"
 end
 
 group :development do
