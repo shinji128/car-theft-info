@@ -1,178 +1,148 @@
-inherit_from: .rubocop_todo.yml # .rubocop_todo.yml が空になったら、この行は削除しましょう。
-
-# The behavior of RuboCop can be controlled via the .rubocop.yml
-# configuration file. It makes it possible to enable/disable
-# certain cops (checks) and to alter their behavior if they accept
-# any parameters. The file can be placed either in your home
-# directory or in some project directory.
-#
-# RuboCop will start looking for the configuration file in the directory
-# where the inspected file is and continue its way up to the root directory.
-#
-# See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
-## rubocop 関連の gem を require します。
+inherit_from: .rubocop_todo.yml
 require:
-  - rubocop-rails
-  - rubocop-rspec
+  - rubocop/cop/internal_affairs
   - rubocop-performance
+  - rubocop-rspec
 
-## 全体に適応する項目を定義します。ここで Exclude に設定したファイルは、チェック対象外になります。
 AllCops:
+  NewCops: enable
   Exclude:
     - 'vendor/**/*'
-    - 'bin/**/*'
-    - 'db/**/*'
+    - 'spec/fixtures/**/*'
     - 'tmp/**/*'
+    - '.git/**/*'
+    - 'bin/*'
     - 'node_modules/**/*'
-    - 'lib/tasks/auto_annotate_models.rake'
+    - 'config/**/*'
+  TargetRubyVersion: 2.5
+  SuggestExtensions: false
 
-Rails:
-  Enabled: true
+Naming/PredicateName:
+  # Method define macros for dynamically generated method.
+  MethodDefinitionMacros:
+    - define_method
+    - define_singleton_method
+    - def_node_matcher
+    - def_node_search
 
-Rails/FilePath:
+Style/AccessorGrouping:
   Exclude:
-    - 'lib/tasks/dev.rake'
-    - 'spec/rails_helper.rb'
+    - lib/rubocop/formatter/base_formatter.rb
+    - lib/rubocop/cop/offense.rb
 
-## `and return` の形式を利用できるようにします。基本的には、&& と || を使います。
-Style/AndOr:
-  Enabled: false
+Style/FormatStringToken:
+  # Because we parse a lot of source codes from strings. Percent arrays
+  # look like unannotated format string tokens to this cop.
+  Exclude:
+    - spec/**/*
 
-## 日本語コメントを許可します。
-Style/AsciiComments:
-  Enabled: false
+Style/IpAddresses:
+  # The test for this cop includes strings that would cause offenses
+  Exclude:
+  - spec/rubocop/cop/style/ip_addresses_spec.rb
 
-Layout/IndentationConsistency:
-  EnforcedStyle: indented_internal_methods
+Layout/EndOfLine:
+  EnforcedStyle: lf
 
-Layout/CommentIndentation:
-  Enabled: false
-
-# https://rubocop.readthedocs.io/en/stable/cops_layout/#layoutemptylinesaroundattributeaccessor
-Layout/EmptyLinesAroundAttributeAccessor:
+Layout/ClassStructure:
   Enabled: true
 
-# https://rubocop.readthedocs.io/en/stable/cops_layout/#layoutspacearoundmethodcalloperator
-Layout/SpaceAroundMethodCallOperator:
+Layout/RedundantLineBreak:
   Enabled: true
 
-# https://docs.rubocop.org/rubocop/cops_lint.html#lintdeprecatedopensslconstant
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
+Layout/TrailingWhitespace:
+  AllowInHeredoc: false
 
-# https://rubocop.readthedocs.io/en/stable/cops_lint/#lintraiseexception
-Lint/RaiseException:
-  Enabled: true
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*.rb'
 
-# https://rubocop.readthedocs.io/en/stable/cops_lint/#lintstructnewoverride
-Lint/StructNewOverride:
-  Enabled: true
+Layout/HashAlignment:
+  EnforcedHashRocketStyle:
+    - key
+    - table
+  EnforcedColonStyle:
+    - key
+    - table
 
 Layout/LineLength:
-  Max: 150
+  Max: 100
+  IgnoredPatterns:
+    - !ruby/regexp /\A +(it|describe|context|shared_examples|include_examples|it_behaves_like) ["']/
 
-Metrics/AbcSize:
+Lint/InterpolationCheck:
   Exclude:
-    - 'lib/tasks/dev.rake'
+    - 'spec/**/*.rb'
+
+Lint/UselessAccessModifier:
+  MethodCreatingMethods:
+    - 'def_matcher'
+    - 'def_node_matcher'
+
+Lint/BooleanSymbol:
+  Enabled: false
 
 Metrics/BlockLength:
-  CountComments: false
   Exclude:
-    - 'Guardfile'
-    - 'config/routes.rb'
-    - 'spec/**/*'
-    - 'app/views/**/*.jbuilder'
-    - 'lib/tasks/dev.rake'
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - '**/*.gemspec'
 
 Metrics/ClassLength:
-  CountComments: false
-
-Metrics/MethodLength:
-  CountComments: false
-  Max: 15
   Exclude:
-    - 'lib/tasks/dev.rake'
+    - lib/rubocop/config_obsoletion.rb
 
 Metrics/ModuleLength:
-  CountComments: false
-
-Naming/FileName:
   Exclude:
-    - 'Gemfile'
-    - 'Guardfile'
+    - 'spec/**/*.rb'
 
-Naming/MethodParameterName:
-  AllowedNames: [e]
+Naming/InclusiveLanguage:
+  FlaggedTerms:
+    offence:
+      Suggestions:
+        - offense
+  Exclude:
+    - lib/rubocop/cop/naming/inclusive_language.rb
 
-RSpec/ContextWording:
-  Enabled: false
+RSpec/FilePath:
+  Exclude:
+    - spec/rubocop/cop/internal_affairs/redundant_let_rubocop_config_new_spec.rb
+    - spec/rubocop/formatter/junit_formatter_spec.rb
 
-RSpec/DescribedClass:
-  Enabled: false
-
-RSpec/ExampleLength:
-  Enabled: false
-
-RSpec/ExpectInHook:
-  Enabled: false
-
-# An instance variable can be used when needed, but use let when possible.
-RSpec/InstanceVariable:
-  Enabled: false
+RSpec/PredicateMatcher:
+  EnforcedStyle: explicit
 
 RSpec/MessageSpies:
-  Enabled: false
-
-RSpec/MultipleExpectations:
-  Enabled: false
+  EnforcedStyle: receive
 
 RSpec/NestedGroups:
-  Max: 5
+  Max: 7
 
-Style/BlockComments:
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Performance/CollectionLiteralInLoop:
   Exclude:
-    - 'spec/spec_helper.rb'
+    - 'Rakefile'
+    - 'spec/**/*.rb'
 
-# https://rubocop.readthedocs.io/en/stable/cops_style/#styleblockdelimiters
-Style/BlockDelimiters:
-  EnforcedStyle: braces_for_chaining
+Performance/EndWith:
+  SafeMultiline: false
+
+Performance/StartWith:
+  SafeMultiline: false
+
+RSpec/StubbedMock:
+  Enabled: false
+
+InternalAffairs/ExampleDescription:
+  Include:
+    - 'spec/rubocop/cop/**/*.rb'
+
+InternalAffairs/UndefinedConfig:
+  Include:
+    - 'lib/rubocop/cop/**/*.rb'
   Exclude:
-    - 'spec/**/*'
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-# https://rubocop.readthedocs.io/en/stable/cops_style/#styleexponentialnotation
-Style/ExponentialNotation:
-  Enabled: true
-
-# https://rubocop.readthedocs.io/en/stable/cops_style/#stylehasheachmethods
-Style/HashEachMethods:
-  Enabled: true
-
-# https://rubocop.readthedocs.io/en/stable/cops_style/#stylehashtransformkeys
-Style/HashTransformKeys:
-  Enabled: true
-
-# https://rubocop.readthedocs.io/en/stable/cops_style/#stylehashtransformvalues
-Style/HashTransformValues:
-  Enabled: true
-
-Style/IfUnlessModifier:
-  Enabled: false
-
-Style/Lambda:
-  EnforcedStyle: literal
-
-Style/RegexpLiteral:
-  Enabled: false
-
-# https://rubocop.readthedocs.io/en/stable/cops_style/#styleslicingwithrange
-Style/SlicingWithRange:
-  Enabled: true
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
+    - 'lib/rubocop/cop/correctors/**/*.rb'
+    - 'lib/rubocop/cop/mixin/**/*.rb'

@@ -27,8 +27,10 @@ group :development, :test do
 
   # Code analyze
   gem 'rubocop'
-  gem 'rails_best_practices'
   gem 'rubocop-rails'
+  gem 'rubocop-performance'
+  gem 'rubocop-rspec'
+  gem 'rails_best_practices'
   gem 'slim_lint'
   gem "html2slim"
 end
@@ -40,6 +42,5 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :test do
-
-end
+# group :test do
+# end
