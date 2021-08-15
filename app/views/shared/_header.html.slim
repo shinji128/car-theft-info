@@ -3,7 +3,7 @@ section.hero.is-info.is-large
     nav.navbar
       .container
         .navbar-brand
-          a.navbar-item
+          = link_to root_path, class: 'navbar-item' do
             h1.title 車両盗難情報拡散アプリ
           span.navbar-burger[data-target="navbarMenuHeroB"]
             span
@@ -15,5 +15,4 @@ section.hero.is-info.is-large
               |  盗難情報一覧
             a.navbar-item
               |  アプリの使い方
-            a.navbar-item
-              |  ログアウト
+            = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
