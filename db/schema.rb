@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_004257) do
+ActiveRecord::Schema.define(version: 2021_08_15_210716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "Posts", force: :cascade do |t|
+    t.string "car_name", null: false
+    t.string "car_model"
+    t.string "car_number", null: false
+    t.string "stole_location", null: false
+    t.string "contact", null: false
+    t.datetime "stole_time"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_Posts_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -25,4 +38,5 @@ ActiveRecord::Schema.define(version: 2021_08_15_004257) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "Posts", "users"
 end
