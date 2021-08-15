@@ -28,7 +28,6 @@ group :development, :test do
   # Code analyze
   gem 'rubocop'
   gem 'rails_best_practices'
-  gem 'rubocop-rails'
   gem 'slim_lint'
   gem "html2slim"
 end
