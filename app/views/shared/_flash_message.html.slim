@@ -1,0 +1,10 @@
+- flash.each do |message_type, message|
+  .message.is-danger
+    div class=("message-header #{message_type}") = message
+
+/ - flash.each do |message_type, message|
+/   article.message.is-danger
+/   | <div class="message-header alert-
+/   = message_type
+/   | ">
+/   = message

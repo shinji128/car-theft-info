@@ -1,0 +1,16 @@
+.container
+  .mt-5
+    h1.title ログインページ
+    = form_with url: @user, local: true do |f|
+      .field
+        = f.label :email
+        .control
+          = f.email_field :email, class: 'input is-normal'
+      .field
+        = f.label :password
+        .control
+          = f.password_field :password, class: 'input is-normal'
+      = f.submit 'ログイン', class: 'button is-primary'
+  = link_to new_user_path, class: 'navbar-item' do
+      .has-text-link
+        | 新規登録はこちら
