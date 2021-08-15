@@ -41,6 +41,9 @@ Style/IpAddresses:
   Exclude:
   - spec/rubocop/cop/style/ip_addresses_spec.rb
 
+Style/Documentation:
+  Enabled: false
+
 Layout/EndOfLine:
   EnforcedStyle: lf
 
