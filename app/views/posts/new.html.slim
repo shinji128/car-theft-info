@@ -1,0 +1,34 @@
+.container
+  .mt-5
+    h1.title 車両盗難情報拡散ページ
+    = form_with model: @form, url: posts_path, local: true do |f|
+      = render 'shared/error_messages', object: f.object
+      .field
+        = f.label :car_name
+        .control
+          = f.text_field :car_name, class: 'input is-normal'
+      .field
+        = f.label :car_model
+        .control
+          = f.text_field :car_model, class: 'input is-normal'
+      .field
+        = f.label :car_number
+        .control
+          = f.text_field :car_number, class: 'input is-normal'
+      .field
+        = f.label :stole_time
+        .control
+          = f.text_field :stole_time, class: 'input is-normal'
+      .field
+        = f.label :stole_location
+        .control
+          = f.text_field :stole_location, class: 'input is-normal'
+      .field
+        = f.label :contact
+        .control
+          = f.text_field :contact, class: 'input is-normal'
+      .field
+        = f.label :images
+        .control
+          = f.file_field :images, multiple: true, class: 'input is-normal'
+      = f.submit 'LINEで一斉送信', class: 'button is-primary'

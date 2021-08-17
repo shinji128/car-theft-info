@@ -86,6 +86,7 @@ Lint/BooleanSymbol:
   Enabled: false
 
 Metrics/BlockLength:
+  Max: 40
   Exclude:
     - 'Rakefile'
     - '**/*.rake'
