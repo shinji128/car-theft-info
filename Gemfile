@@ -16,6 +16,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bulma-rails'
 gem 'sorcery'
 gem 'carrierwave', '2.2.2'
+gem 'line-bot-api'
 
 group :development, :test do
   # Debugger
