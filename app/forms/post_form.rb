@@ -26,6 +26,15 @@ class PostForm
     true
   end
 
+  def text
+    '車名:' + car_name + "\n" +
+      '車の型式:' + car_model + "\n" +
+      'ナンバープレート:' + car_number + "\n" +
+      '盗難時刻:' + stole_time.to_s + "\n" +
+      '盗難場所:' + stole_location + "\n" +
+      '目撃情報連絡先:' + contact
+  end
+
   private
 
   def post_params
