@@ -17,6 +17,7 @@ gem 'bulma-rails'
 gem 'sorcery'
 gem 'carrierwave', '2.2.2'
 gem 'line-bot-api'
+gem 'httpclient'
 
 group :development, :test do
   # Debugger
