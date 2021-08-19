@@ -112,6 +112,7 @@ GEM
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
+    httpclient (2.8.3)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
@@ -121,6 +122,7 @@ GEM
       activesupport (>= 5.0.0)
     json (2.5.1)
     jwt (2.2.3)
+    line-bot-api (1.19.0)
     listen (3.6.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -308,7 +310,9 @@ DEPENDENCIES
   byebug
   carrierwave (= 2.2.2)
   html2slim
+  httpclient
   jbuilder (~> 2.7)
+  line-bot-api
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   pry
