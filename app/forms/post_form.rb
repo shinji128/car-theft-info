@@ -1,8 +1,8 @@
 class PostForm
   include ActiveModel::Model
   include ActiveModel::Attributes
-  extend CarrierWave::Mount
-  mount_uploader :image, ImageUploader
+  # extend CarrierWave::Mount
+  # mount_uploader :image, ImageUploader
 
   attribute :car_name, :string
   attribute :car_model, :string
@@ -12,11 +12,12 @@ class PostForm
   attribute :contact, :string
   attribute :images
   attribute :user_id, :integer
+  attribute :post
 
   def save
     return false if invalid?
 
-    post = Post.new(post_params)
+    self.post = Post.new(post_params)#newがcreateじゃね？
     post.save
 
     images.each do |image|
@@ -24,15 +25,6 @@ class PostForm
     end
 
     true
-  end
-
-  def text
-    '車名:' + car_name + "\n" +
-      '車の型式:' + car_model + "\n" +
-      'ナンバープレート:' + car_number + "\n" +
-      '盗難時刻:' + stole_time.to_s + "\n" +
-      '盗難場所:' + stole_location + "\n" +
-      '目撃情報連絡先:' + contact
   end
 
   private
