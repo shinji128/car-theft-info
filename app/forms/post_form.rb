@@ -1,8 +1,6 @@
 class PostForm
   include ActiveModel::Model
   include ActiveModel::Attributes
-  # extend CarrierWave::Mount
-  # mount_uploader :image, ImageUploader
 
   attribute :car_name, :string
   attribute :car_model, :string
@@ -17,7 +15,7 @@ class PostForm
   def save
     return false if invalid?
 
-    self.post = Post.new(post_params)#newがcreateじゃね？
+    self.post = Post.new(post_params) # newがcreateじゃね？
     post.save
 
     images.each do |image|

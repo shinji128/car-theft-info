@@ -1,4 +1,8 @@
 class PostsController < ApplicationController
+  def index
+    @posts = Post.all.includes(:user, :images).order(created_at: :desc)
+  end
+
   def new
     @form = PostForm.new
   end
@@ -6,8 +10,6 @@ class PostsController < ApplicationController
   def create
     @form = PostForm.new(post_params)
     if @form.save
-      # msg = { type: 'text', text: @form.text }
-      binding.pry
       message = { type: 'flex', altText: '盗難車両', contents: set_bubble(@form) }
       client.broadcast(message)
       redirect_to root_path
