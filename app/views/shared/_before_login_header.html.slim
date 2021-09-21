@@ -12,8 +12,7 @@ section.hero.is-info.is-large
             span
         #navbarMenuHeroB.navbar-menu
           .navbar-end
-            a.navbar-item
-              |  盗難情報一覧
+            = link_to '盗難情報一覧', posts_path, class: 'navbar-item'
             a.navbar-item
               |  アプリの使い方
             = link_to 'ログイン', login_path, class: 'navbar-item'
