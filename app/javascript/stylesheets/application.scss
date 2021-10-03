@@ -14,3 +14,26 @@
  *= require_self
  */
 @import 'swiper/swiper-bundle';
+
+.swiper-container {
+  width: 100%;
+  height: 500px;
+  background-color: #000;
+
+  .swiper-wrapper {
+
+    .swiper-slide {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      height: 350px;
+      width: 350px;
+      border-radius: 50%;
+    }
+
+    .swiper-slide:not(.swiper-slide-active) {
+      transform: scale(0.5);
+      opacity: 0.3;
+    }
+  }
+};

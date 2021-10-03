@@ -2,7 +2,7 @@
   .column.is-two-thirds
     .card
       .card-image
-        .swiper
+        .swiper-container
           .swiper-wrapper
             - @post.images.each do |image|
               .swiper-slide
@@ -23,3 +23,43 @@
           p 盗難場所 : #{@post.stole_location}
           p 盗難日時 : #{@post.stole_time}
           p 連絡先 : #{@post.contact}
+
+script src="https://unpkg.com/swiper/swiper-bundle.js"
+script src="https://unpkg.com/swiper/swiper-bundle.min.js"
+
+/ script const swiper = new Swiper(".swiper-container", {
+/                         loop: true,
+/                         slidesPerView: 'auto',
+/                         spaceBetween: 20,
+/                         freeMode: true,
+/                         freeModeSticky: true,
+/                         touchRatio: .03,
+/                         grabCursor: true,
+/                         navigation: {
+/                           nextEl: '.swiper-button-next',
+/                           prevEl: '.swiper-button-prev',
+/                         },
+/                         pagination: {
+/                           el: ".swiper-pagination",
+/                         },
+/                       });
+
+script const swiper = new Swiper('.swiper-container', {
+    effect: 'coverflow',
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+    coverflowEffect: {
+      depth: 500,
+      modifire: 20
+    },
+    rotate: 30,
+    slidesPerView: 2,
+    centeredSlides: true,
+    loop: true,
+    speed: 1000,
+  });
