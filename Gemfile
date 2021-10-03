@@ -18,6 +18,7 @@ gem 'sorcery'
 gem 'carrierwave', '2.2.2'
 gem 'line-bot-api'
 gem 'httpclient'
+gem 'jquery-rails'
 
 group :development, :test do
   # Debugger
