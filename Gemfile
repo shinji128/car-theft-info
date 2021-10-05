@@ -19,6 +19,7 @@ gem 'carrierwave', '2.2.2'
 gem 'line-bot-api'
 gem 'httpclient'
 gem 'jquery-rails'
+gem 'rails-i18n', '>= 5.1.3'
 
 group :development, :test do
   # Debugger
