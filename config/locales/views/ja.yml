@@ -1,0 +1,6 @@
+ja:
+  defaults:
+  posts:
+    new:
+      title: '盗難情報登録'
+      submit: '盗難情報登録 & LINEで一斉送信'
