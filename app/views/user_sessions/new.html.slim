@@ -1,16 +1,17 @@
 .container
   .mt-5
-    h1.title ログインページ
-    = form_with url: @user, local: true do |f|
+    .h1.title
+      =(t '.title')
+    = form_with url: login_path, local: true do |f|
       .field
-        = f.label :email
+        = f.label :email, User.human_attribute_name(:email)
         .control
           = f.email_field :email, class: 'input is-normal'
       .field
-        = f.label :password
+        = f.label :email, User.human_attribute_name(:password)
         .control
           = f.password_field :password, class: 'input is-normal'
-      = f.submit 'ログイン', class: 'button is-primary'
+      = f.submit t('.submit'), class: 'button is-primary'
   = link_to new_user_path, class: 'navbar-item' do
       .has-text-link
-        | 新規登録はこちら
+        = (t '.sign_up')
