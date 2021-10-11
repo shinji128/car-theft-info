@@ -8,6 +8,8 @@ ja:
       user:
         name: '名前'
         email: 'メールアドレス'
+        password: 'パスワード'
+        password_confirmation: 'パスワード確認'
       post:
         car_name: '車名'
         car_model: '型式'

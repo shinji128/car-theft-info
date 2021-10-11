@@ -1,6 +1,7 @@
 .container
   .mt-5
-    h1.title 新規登録ページ
+    .h1.title
+      =(t '.title')
     = form_with model: @user, local: true do |f|
       = render 'shared/error_messages', object: f.object
       .field
@@ -19,7 +20,7 @@
         = f.label :password_confirmation
         .control
           = f.password_field :password_confirmation, class: 'input is-normal'
-      = f.submit '新規登録', class: 'button is-primary'
+      = f.submit class: 'button is-primary'
   = link_to login_path, class: 'navbar-item' do
     .has-text-link
-      | ログインはこちら
+      = (t '.login')

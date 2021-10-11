@@ -1,12 +1,20 @@
 ja:
   defaults:
     title: '車両盗難情報拡散アプリ'
-    sign_up: '新規登録'
+    sign_up: 'ユーザー登録'
     login: 'ログイン'
     logout: 'ログアウト'
     post_index: '盗難情報一覧'
     post_new: '盗難情報登録'
-
+  users:
+    new:
+      title: 'ユーザー登録'
+      login: 'ログインページへ'
+  user_sessions:
+    new:
+      title: 'ログインページ'
+      submit: 'ログイン'
+      sign_up: 'ユーザー登録ページへ'
   posts:
     new:
       title: '盗難情報登録'
