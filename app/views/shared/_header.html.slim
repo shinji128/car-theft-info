@@ -4,15 +4,16 @@ section.hero.is-info.is-large
       .container
         .navbar-brand
           = link_to root_path, class: 'navbar-item' do
-            h1.title 車両盗難情報拡散アプリ
+            .h1.title
+              = (t 'defaults.title')
           span.navbar-burger[data-target="navbarMenuHeroB"]
             span
             span
             span
         #navbarMenuHeroB.navbar-menu
           .navbar-end
-            = link_to '盗難情報を拡散', new_post_path, class: 'navbar-item'
-            = link_to '盗難情報一覧', posts_path, class: 'navbar-item'
+            = link_to (t 'defaults.post_new'), new_post_path, class: 'navbar-item'
+            = link_to (t 'defaults.post_index'), posts_path, class: 'navbar-item'
             a.navbar-item
               |  アプリの使い方
-            = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
+            = link_to (t 'defaults.logout'), logout_path, class: 'navbar-item', method: :delete
