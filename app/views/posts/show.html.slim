@@ -24,26 +24,7 @@
           p 盗難日時 : #{@post.stole_time}
           p 連絡先 : #{@post.contact}
 
-script src="https://unpkg.com/swiper/swiper-bundle.js"
 script src="https://unpkg.com/swiper/swiper-bundle.min.js"
-
-/ script const swiper = new Swiper(".swiper-container", {
-/                         loop: true,
-/                         slidesPerView: 'auto',
-/                         spaceBetween: 20,
-/                         freeMode: true,
-/                         freeModeSticky: true,
-/                         touchRatio: .03,
-/                         grabCursor: true,
-/                         navigation: {
-/                           nextEl: '.swiper-button-next',
-/                           prevEl: '.swiper-button-prev',
-/                         },
-/                         pagination: {
-/                           el: ".swiper-pagination",
-/                         },
-/                       });
-
 script const swiper = new Swiper('.swiper-container', {
     effect: 'coverflow',
     navigation: {
