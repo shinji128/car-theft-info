@@ -30,6 +30,15 @@
           = f.text_field :contact, class: 'input is-normal'
       .field
         = f.label :images
+        = f.file_field :images, multiple: true, class: 'input is-normal'
         .control
-          = f.file_field :images, multiple: true, class: 'input is-normal'
-      = f.submit t('.submit'), class: 'button is-primary'
+          - @form.images.each do |image|
+            = image_tag image.url, class: 'is-4by3', width: '400', id: "image-#{image.id}"
+            = link_to image_path(image),
+                              class: 'js-delete-image-button',
+                              id: "link-#{image.id}",
+                              method: :delete,
+                              data: { confirm: '削除しますか？' },
+                              remote: true do
+                            = '削除'
+      = f.submit '編集', class: 'button is-primary'
