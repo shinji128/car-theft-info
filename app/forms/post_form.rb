@@ -20,11 +20,19 @@ class PostForm
   validate :check_image
   validate :image_count
 
+  delegate :persisted?, to: :@post
+
+  def initialize(attributes = nil, post: Post.new)
+    @post = post
+    attributes ||= default_attributes
+    super(attributes)
+  end
+
   def save
     return false if invalid?
 
     ActiveRecord::Base.transaction do
-      self.post = Post.new(post_params) # newがcreateじゃね？
+      self.post = Post.new(post_params)
       post.save
 
       images.each do |image|
@@ -32,6 +40,19 @@ class PostForm
       end
     end
     true
+  end
+
+  def update
+    ActiveRecord::Base.transaction do
+      images.each do |image|
+        @post.images.create(image: image)
+      end
+      @post.update!(post_params)
+    end
+  end
+
+  def to_model
+    @post
   end
 
   private
@@ -45,6 +66,19 @@ class PostForm
       contact: contact,
       stole_time: stole_time,
       user_id: user_id
+    }
+  end
+
+  def default_attributes
+    {
+      car_name: @post.car_name,
+      car_model: @post.car_model,
+      car_number: @post.car_number,
+      stole_location: @post.stole_location,
+      contact: @post.contact,
+      stole_time: @post.stole_time,
+      user_id: @post.user_id,
+      images: @post.images
     }
   end
 
@@ -64,6 +98,6 @@ class PostForm
   def image_count
     return false if images.blank?
 
-    errors.add('画像は5枚までです') if images.count >= 6
+    errors.add(:images, 'は5枚までです') if images.count >= 6
   end
 end

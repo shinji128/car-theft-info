@@ -24,11 +24,27 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def edit
+    @post = current_user.posts.find(params[:id])
+    @form = PostForm.new(post: @post)
+  end
+
+  def update
+    @post = current_user.posts.find(params[:id])
+    @form = PostForm.new(post_params, post: @post)
+
+    if @form.update
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def post_params
-    params.require(:post_form).permit(:car_name, :car_model, :car_number, :stole_time,
-                                      :stole_location, :contact, { images: [] })
+    params.require(:post).permit(:car_name, :car_model, :car_number, :stole_time,
+                                 :stole_location, :contact, { images: [] })
           .merge(user_id: current_user.id)
   end
 
