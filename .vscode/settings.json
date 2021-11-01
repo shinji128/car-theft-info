@@ -15,5 +15,5 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
 }
