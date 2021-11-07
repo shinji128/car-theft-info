@@ -12,6 +12,7 @@ gem 'webpacker', '~> 4.0'
 gem 'jbuilder', '~> 2.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'slim-rails'
 gem 'bulma-rails'
 gem 'sorcery'
 gem 'carrierwave', '2.2.2'
