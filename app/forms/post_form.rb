@@ -1,6 +1,7 @@
 class PostForm
   include ActiveModel::Model
   include ActiveModel::Attributes
+  # extend CarrierWave::Mount
 
   attribute :car_name, :string
   attribute :car_model, :string
