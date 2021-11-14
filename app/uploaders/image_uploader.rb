@@ -45,4 +45,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  if Rails.env.development? # 開発環境
+    storage :file
+  elsif Rails.env.test?
+    storage :file
+  else # 本番環境
+    storage :fog
+  end
 end
