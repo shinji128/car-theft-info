@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   def set_bubble(form)
     {
       type: 'bubble',
-      # hero: set_hero(form),
+      hero: set_hero(form),
       body: set_body(form),
       footer: set_footer
     }
