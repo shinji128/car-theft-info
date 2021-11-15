@@ -21,6 +21,7 @@ gem 'line-bot-api'
 gem 'httpclient'
 gem 'jquery-rails'
 gem 'rails-i18n', '>= 5.1.3'
+gem 'fog-aws'
 
 group :development, :test do
   # Debugger
