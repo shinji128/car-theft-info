@@ -7,13 +7,14 @@ CarrierWave.configure do |config|
     config.storage :fog
     config.fog_provider = 'fog/aws'
     config.fog_directory  = 'car-theft-info' # バケット名
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/car-theft-info'
     config.fog_public = false
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: Rails.application.credentials.aws[:access_key_id], # アクセスキー
       aws_secret_access_key: Rails.application.credentials.aws[:secret_access_key], # シークレットアクセスキー
       region: 'ap-northeast-1', # リージョン
-      path_style: true
+      # path_style: true
     }
   else # 本番環境以外の場合はアプリケーション内にアップロード
     config.storage :file
