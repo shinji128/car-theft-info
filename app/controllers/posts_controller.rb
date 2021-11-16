@@ -58,7 +58,7 @@ class PostsController < ApplicationController
   def set_bubble(form)
     {
       type: 'bubble',
-      # hero: set_hero(form),
+      hero: set_hero(form),
       body: set_body(form),
       footer: set_footer
     }
@@ -67,7 +67,7 @@ class PostsController < ApplicationController
   def set_hero(form)
     {
       type: 'image',
-      url: form.post.images[0].image.url,
+      url: form.post.images[0].image.url.to_s,
       size: 'full',
       aspectRatio: '20:13',
       action: {
