@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     @form = PostForm.new(post_params)
     if @form.save
       message = { type: 'flex', altText: '盗難車両', contents: set_bubble(@form) }
+      # binding.pry
       client.broadcast(message)
       redirect_to root_path
     else
@@ -60,7 +61,7 @@ class PostsController < ApplicationController
       type: 'bubble',
       hero: set_hero(form),
       body: set_body(form),
-      footer: set_footer
+      footer: set_footer(form)
     }
   end
 
@@ -237,7 +238,7 @@ class PostsController < ApplicationController
     }
   end
 
-  def set_footer
+  def set_footer(form)
     {
       type: 'box',
       layout: 'vertical',
@@ -250,7 +251,7 @@ class PostsController < ApplicationController
           action: {
             type: 'uri',
             label: '盗難情報詳細ページ',
-            uri: 'https://car-theft-info.herokuapp.com/posts/21'
+            uri: "https://car-theft-info.herokuapp.com/posts/#{form.post.id}"
           }
         },
         {
