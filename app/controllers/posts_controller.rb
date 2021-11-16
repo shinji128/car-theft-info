@@ -70,7 +70,7 @@ class PostsController < ApplicationController
       url: form.post.images[0].image.url.to_s,
       size: 'full',
       aspectRatio: '4:3',
-      aspectMode: 'cover'
+      aspectMode: 'cover',
       action: {
         type: 'uri',
         uri: form.post.images[0].image.url.to_s
