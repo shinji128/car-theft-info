@@ -13,7 +13,6 @@ class PostsController < ApplicationController
     @form = PostForm.new(post_params)
     if @form.save
       message = { type: 'flex', altText: '盗難車両', contents: set_bubble(@form) }
-      # binding.pry
       client.broadcast(message)
       redirect_to root_path
     else
