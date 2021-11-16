@@ -58,21 +58,22 @@ class PostsController < ApplicationController
   def set_bubble(form)
     {
       type: 'bubble',
-      # hero: set_hero(form),
+      hero: set_hero(form),
       body: set_body(form),
-      footer: set_footer
+      footer: set_footer(form)
     }
   end
 
   def set_hero(form)
     {
       type: 'image',
-      url: form.post.images[0].image.url,
+      url: form.post.images[0].image.url.to_s,
       size: 'full',
-      aspectRatio: '20:13',
+      aspectRatio: '4:3',
+      aspectMode: 'cover',
       action: {
         type: 'uri',
-        uri: 'https://www.google.com/?hl=ja'
+        uri: form.post.images[0].image.url.to_s
       }
     }
   end
@@ -236,7 +237,7 @@ class PostsController < ApplicationController
     }
   end
 
-  def set_footer
+  def set_footer(form)
     {
       type: 'box',
       layout: 'vertical',
@@ -248,8 +249,8 @@ class PostsController < ApplicationController
           height: 'sm',
           action: {
             type: 'uri',
-            label: 'WEB',
-            uri: 'https://www.google.com/?hl=ja'
+            label: '盗難情報詳細ページ',
+            uri: "https://car-theft-info.herokuapp.com/posts/#{form.post.id}"
           }
         },
         {
