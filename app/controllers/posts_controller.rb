@@ -250,7 +250,7 @@ class PostsController < ApplicationController
           action: {
             type: 'uri',
             label: '盗難情報詳細ページ',
-            uri: "https://car-theft-info.herokuapp.com/posts/#{form.post.id}"
+            uri: 'https://car-theft-info.herokuapp.com/posts/21'
           }
         },
         {
