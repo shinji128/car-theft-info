@@ -103,7 +103,7 @@ class PostsController < ApplicationController
               contents: [
                 {
                   type: 'text',
-                  text: '車名',
+                  text: Post.human_attribute_name(car_name),
                   size: 'sm',
                   color: '#aaaaaa',
                   flex: 2
