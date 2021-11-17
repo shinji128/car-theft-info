@@ -103,7 +103,7 @@ class PostsController < ApplicationController
               contents: [
                 {
                   type: 'text',
-                  text: Post.human_attribute_name(car_name),
+                  text: t('activerecord.attributes.post.car_name'),
                   size: 'sm',
                   color: '#aaaaaa',
                   flex: 2
