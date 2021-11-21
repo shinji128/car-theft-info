@@ -105,6 +105,9 @@ Metrics/AbcSize:
   Enabled: true
   Max: 20
 
+Metrics/MethodLength:
+  Max: 14
+
 Naming/InclusiveLanguage:
   FlaggedTerms:
     offence:
