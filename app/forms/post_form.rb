@@ -56,6 +56,54 @@ class PostForm
     @post
   end
 
+  def hoge
+    [
+      {
+        type: 'text',
+        text: I18n.t('activerecord.attributes.post.car_name'),
+        size: 'sm',
+        color: '#aaaaaa',
+        flex: 2
+      },
+      {
+        type: 'text',
+        text: car_name,
+        wrap: true,
+        color: '#666666',
+        size: 'sm',
+        flex: 5
+      }
+    ]
+  end
+
+  def set_body_contents
+    tags = %w[car_name car_model car_number stole_location contact stole_time]
+    tags.map do |tag|
+      {
+        type: 'box',
+        layout: 'baseline',
+        spacing: 'sm',
+        contents: [
+          {
+            type: 'text',
+            text: I18n.t("activerecord.attributes.post.#{tag}"),
+            size: 'sm',
+            color: '#aaaaaa',
+            flex: 2
+          },
+          {
+            type: 'text',
+            text: post.attribute_was(tag),
+            wrap: true,
+            color: '#666666',
+            size: 'sm',
+            flex: 5
+          }
+        ]
+      }
+    end
+  end
+
   private
 
   def post_params

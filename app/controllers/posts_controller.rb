@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     @form = PostForm.new(post_params)
     if @form.save
       message = { type: 'flex', altText: '盗難車両', contents: set_bubble(@form) }
+      binding.pry
       client.broadcast(message)
       redirect_to root_path
     else
@@ -95,140 +96,141 @@ class PostsController < ApplicationController
           layout: 'vertical',
           margin: 'lg',
           spacing: 'sm',
-          contents: [
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: t('activerecord.attributes.post.car_name'),
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.car_name,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '型式',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.car_model,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'ナンバー',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.car_number,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '盗難時刻',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.stole_time,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '盗難場所',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.stole_location,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '連絡先',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.contact,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            }
-          ]
+          contents: form.set_body_contents
+          # {
+          #   type: 'box',
+          #   layout: 'baseline',
+          #   spacing: 'sm',
+          #   contents: form.hoge
+          # {
+          #   type: 'text',
+          #   text: t('activerecord.attributes.post.car_name'),
+          #   size: 'sm',
+          #   color: '#aaaaaa',
+          #   flex: 2
+          # },
+          # form.hoge
+          # {
+          #   type: 'text',
+          #   text: form.car_name,
+          #   wrap: true,
+          #   color: '#666666',
+          #   size: 'sm',
+          #   flex: 5
+          # }
+          # ]
+          # },
+          # {
+          #   type: 'box',
+          #   layout: 'baseline',
+          #   spacing: 'sm',
+          #   contents: [
+          #     {
+          #       type: 'text',
+          #       text: '型式',
+          #       size: 'sm',
+          #       color: '#aaaaaa',
+          #       flex: 2
+          #     },
+          #     {
+          #       type: 'text',
+          #       text: form.car_model,
+          #       wrap: true,
+          #       color: '#666666',
+          #       size: 'sm',
+          #       flex: 5
+          #     }
+          #   ]
+          # },
+          # {
+          #   type: 'box',
+          #   layout: 'baseline',
+          #   spacing: 'sm',
+          #   contents: [
+          #     {
+          #       type: 'text',
+          #       text: 'ナンバー',
+          #       size: 'sm',
+          #       color: '#aaaaaa',
+          #       flex: 2
+          #     },
+          #     {
+          #       type: 'text',
+          #       text: form.car_number,
+          #       wrap: true,
+          #       color: '#666666',
+          #       size: 'sm',
+          #       flex: 5
+          #     }
+          #   ]
+          # },
+          # {
+          #   type: 'box',
+          #   layout: 'baseline',
+          #   spacing: 'sm',
+          #   contents: [
+          #     {
+          #       type: 'text',
+          #       text: '盗難時刻',
+          #       size: 'sm',
+          #       color: '#aaaaaa',
+          #       flex: 2
+          #     },
+          #     {
+          #       type: 'text',
+          #       text: form.stole_time,
+          #       wrap: true,
+          #       color: '#666666',
+          #       size: 'sm',
+          #       flex: 5
+          #     }
+          #   ]
+          # },
+          # {
+          #   type: 'box',
+          #   layout: 'baseline',
+          #   spacing: 'sm',
+          #   contents: [
+          #     {
+          #       type: 'text',
+          #       text: '盗難場所',
+          #       size: 'sm',
+          #       color: '#aaaaaa',
+          #       flex: 2
+          #     },
+          #     {
+          #       type: 'text',
+          #       text: form.stole_location,
+          #       wrap: true,
+          #       color: '#666666',
+          #       size: 'sm',
+          #       flex: 5
+          #     }
+          #   ]
+          # },
+          # {
+          #   type: 'box',
+          #   layout: 'baseline',
+          #   spacing: 'sm',
+          #   contents: [
+          #     {
+          #       type: 'text',
+          #       text: '連絡先',
+          #       size: 'sm',
+          #       color: '#aaaaaa',
+          #       flex: 2
+          #     },
+          #     {
+          #       type: 'text',
+          #       text: form.contact,
+          #       wrap: true,
+          #       color: '#666666',
+          #       size: 'sm',
+          #       flex: 5
+          #     }
+          #   ]
+          # }
+          # ]
         },
         {
           type: 'separator'
