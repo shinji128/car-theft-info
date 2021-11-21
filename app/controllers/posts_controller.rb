@@ -132,7 +132,7 @@ class PostsController < ApplicationController
         contents: [
           {
             type: 'image',
-            url: img,
+            url: img.to_s,
             size: 'full',
             aspectMode: 'cover',
             aspectRatio: '2:3',
