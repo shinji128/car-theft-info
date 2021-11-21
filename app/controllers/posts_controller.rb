@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     @form = PostForm.new(post_params)
     if @form.save
-      message = { type: 'flex', altText: '盗難車両', contents: set_bubble(@form) }
+      message = { type: 'flex', altText: '盗難車両', contents: line_bubble(@form) }
       client.broadcast(message)
       redirect_to root_path
     else
@@ -55,208 +55,55 @@ class PostsController < ApplicationController
     end
   end
 
-  def set_bubble(form)
+  def line_bubble(form)
     {
       type: 'bubble',
-      hero: set_hero(form),
-      body: set_body(form),
-      footer: set_footer(form)
+      hero: line_hero(form),
+      body: line_body(form),
+      footer: line_footer(form)
     }
   end
 
-  def set_hero(form)
+  def line_hero(form)
     {
       type: 'image',
       url: form.post.images[0].image.url.to_s,
       size: 'full',
       aspectRatio: '4:3',
       aspectMode: 'cover',
-      action: {
-        type: 'uri',
-        uri: form.post.images[0].image.url.to_s
-      }
+      action: { type: 'uri', uri: form.post.images[0].image.url.to_s }
     }
   end
 
-  def set_body(form)
+  def line_body(form)
     {
-      type: 'box',
-      layout: 'vertical',
+      type: 'box', layout: 'vertical',
       contents: [
         {
-          type: 'text',
-          text: "#{form.car_name}が盗まれました",
-          size: 'xxl',
-          wrap: true,
-          weight: 'bold'
+          type: 'text', text: "#{form.car_name}が盗まれました",
+          size: 'xxl', wrap: true, weight: 'bold'
         },
         {
-          type: 'box',
-          layout: 'vertical',
-          margin: 'lg',
-          spacing: 'sm',
-          contents: [
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '車名',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.car_name,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '型式',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.car_model,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: 'ナンバー',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.car_number,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '盗難時刻',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.stole_time,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '盗難場所',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.stole_location,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            },
-            {
-              type: 'box',
-              layout: 'baseline',
-              spacing: 'sm',
-              contents: [
-                {
-                  type: 'text',
-                  text: '連絡先',
-                  size: 'sm',
-                  color: '#aaaaaa',
-                  flex: 2
-                },
-                {
-                  type: 'text',
-                  text: form.contact,
-                  wrap: true,
-                  color: '#666666',
-                  size: 'sm',
-                  flex: 5
-                }
-              ]
-            }
-          ]
+          type: 'box', layout: 'vertical', margin: 'lg', spacing: 'sm',
+          contents: form.line_body_contents
         },
-        {
-          type: 'separator'
-        }
+        { type: 'separator' }
       ]
     }
   end
 
-  def set_footer(form)
+  def line_footer(form)
     {
-      type: 'box',
-      layout: 'vertical',
-      spacing: 'sm',
+      type: 'box', layout: 'vertical', spacing: 'sm',
       contents: [
         {
-          type: 'button',
-          style: 'link',
-          height: 'sm',
+          type: 'button', style: 'link', height: 'sm',
           action: {
-            type: 'uri',
-            label: '盗難情報詳細ページ',
+            type: 'uri', label: '盗難情報詳細ページ',
             uri: "https://car-theft-info.herokuapp.com/posts/#{form.post.id}"
           }
         },
-        {
-          type: 'spacer',
-          size: 'sm'
-        }
+        { type: 'spacer', size: 'sm' }
       ],
       flex: 0
     }
