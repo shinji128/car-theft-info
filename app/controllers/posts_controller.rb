@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     @form = PostForm.new(post_params)
     if @form.save
       message = { type: 'flex', altText: '盗難車両', contents: line_carousel(@form) }
+      binding.pry
       client.broadcast(message)
       redirect_to root_path
     else
@@ -58,9 +59,9 @@ class PostsController < ApplicationController
   def line_carousel(form)
     bubbles = []
     bubbles.push line_bubble(form)
-    if form.post.images.count >= 2
-      (form.post.images[1]..form.post.images.last).map do |image|
-        bubbles.push image_bubble(image)
+    if form.images.count >= 2
+      (form.post.images[1].image.url..form.post.images.last.image.url).each do |img|
+        bubbles.push image_bubble(img)
       end
     end
     {
@@ -123,7 +124,7 @@ class PostsController < ApplicationController
     }
   end
 
-  def image_bubble(image)
+  def image_bubble(img)
     {
       type: 'bubble',
       body: {
@@ -132,7 +133,7 @@ class PostsController < ApplicationController
         contents: [
           {
             type: 'image',
-            url: image.image.url.to_s,
+            url: img,
             size: 'full',
             aspectMode: 'cover',
             aspectRatio: '2:3',
