@@ -55,6 +55,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def set_carousel(form)
+    bubbles = []
+    bubbles.push line_bubble(form)
+    if form.post.images.count >= 2
+      (form.post.images[1]..form.post.images.last).map do |image|
+        bubbles.push image_bubble(image)
+      end
+    end
+    {
+      type: 'carousel',
+      contents: bubbles
+    }
+  end
+
   def line_bubble(form)
     {
       type: 'bubble',
@@ -106,6 +120,27 @@ class PostsController < ApplicationController
         { type: 'spacer', size: 'sm' }
       ],
       flex: 0
+    }
+  end
+
+  def image_bubble(image)
+    {
+      type: 'bubble',
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'image',
+            url: image.image.url.to_s,
+            size: 'full',
+            aspectMode: 'cover',
+            aspectRatio: '2:3',
+            gravity: 'top'
+          }
+        ],
+        paddingAll: '0px'
+      }
     }
   end
 end
