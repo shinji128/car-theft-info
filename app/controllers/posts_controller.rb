@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     @form = PostForm.new(post_params)
     if @form.save
-      message = { type: 'flex', altText: '盗難車両', contents: line_bubble(@form) }
+      message = { type: 'flex', altText: '盗難車両', contents: line_carousel(@form) }
       client.broadcast(message)
       redirect_to root_path
     else
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def set_carousel(form)
+  def line_carousel(form)
     bubbles = []
     bubbles.push line_bubble(form)
     if form.post.images.count >= 2
