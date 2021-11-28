@@ -151,10 +151,10 @@ class PostsController < ApplicationController
             type: 'image',
             url: img.to_s,
             size: 'full',
-            aspectMode: 'fit',
+            aspectMode: 'cover',
             aspectRatio: '1:1',
             gravity: 'center',
-            action: { type: 'uri', uri: img.image.url.to_s }
+            action: { type: 'uri', label: 'action', uri: img.to_s }
           }
         ],
         paddingAll: '0px'
