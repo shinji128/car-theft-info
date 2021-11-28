@@ -55,12 +55,29 @@ class PostsController < ApplicationController
     end
   end
 
+  # def line_carousel(form)
+  #   bubbles = []
+  #   bubbles.push line_bubble(form)
+  #   if form.images.count >= 2
+  #     (form.post.images[1].image.url..form.post.images.last.image.url).each do |img|
+  #       binding.pry
+  #       bubbles.push image_bubble(img)
+  #     end
+  #   end
+
+  #   {
+  #     type: 'carousel',
+  #     contents: bubbles
+  #   }
+  # end
+
   def line_carousel(form)
     bubbles = []
-    bubbles.push line_bubble(form)
-    if form.images.count >= 2
-      (form.post.images[1].image.url..form.post.images.last.image.url).each do |img|
-        bubbles.push image_bubble(img)
+    form.post.images.each_with_index do |img, i|
+      if i == 0
+        bubbles.push line_bubble(form)
+      else
+        bubbles.push image_bubble(img.image.url)
       end
     end
     {
@@ -135,7 +152,7 @@ class PostsController < ApplicationController
             url: img.to_s,
             size: 'full',
             aspectMode: 'cover',
-            aspectRatio: '2:3',
+            aspectRatio: '4:3',
             gravity: 'top'
           }
         ],
