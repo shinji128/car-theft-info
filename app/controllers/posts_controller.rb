@@ -152,8 +152,8 @@ class PostsController < ApplicationController
             url: img.to_s,
             size: 'full',
             aspectMode: 'cover',
-            aspectRatio: '4:3',
-            gravity: 'top'
+            aspectRatio: '1:1',
+            gravity: 'center'
           }
         ],
         paddingAll: '0px'
