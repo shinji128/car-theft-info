@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class PostsController < ApplicationController # rubocop:disable Metrics/ClassLength
   skip_before_action :require_login, only: %i[index show]
 
   def index
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     @form = PostForm.new(post_params)
     if @form.save
-      message = { type: 'flex', altText: '盗難車両', contents: line_bubble(@form) }
+      message = { type: 'flex', altText: '盗難車両', contents: line_carousel(@form) }
       client.broadcast(message)
       redirect_to root_path
     else
@@ -55,6 +55,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def line_carousel(form)
+    bubbles = []
+    form.post.images.each_with_index do |img, i|
+      if i.zero?
+        bubbles.push line_bubble(form)
+      else
+        bubbles.push image_bubble(img.image.url)
+      end
+    end
+    { type: 'carousel', contents: bubbles }
+  end
+
   def line_bubble(form)
     {
       type: 'bubble',
@@ -68,9 +80,7 @@ class PostsController < ApplicationController
     {
       type: 'image',
       url: form.post.images[0].image.url.to_s,
-      size: 'full',
-      aspectRatio: '4:3',
-      aspectMode: 'cover',
+      size: 'full', aspectRatio: '4:3', aspectMode: 'cover',
       action: { type: 'uri', uri: form.post.images[0].image.url.to_s }
     }
   end
@@ -106,6 +116,23 @@ class PostsController < ApplicationController
         { type: 'spacer', size: 'sm' }
       ],
       flex: 0
+    }
+  end
+
+  def image_bubble(img)
+    {
+      type: 'bubble',
+      body: {
+        type: 'box', layout: 'vertical',
+        contents: [
+          {
+            type: 'image', url: img.to_s, size: 'full',
+            aspectMode: 'cover', aspectRatio: '1:1', gravity: 'center',
+            action: { type: 'uri', label: 'action', uri: img.to_s }
+          }
+        ],
+        paddingAll: '0px'
+      }
     }
   end
 end
