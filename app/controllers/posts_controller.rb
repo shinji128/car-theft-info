@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class PostsController < ApplicationController # rubocop:disable Metrics/ClassLength
   skip_before_action :require_login, only: %i[index show]
 
   def index
@@ -55,35 +55,16 @@ class PostsController < ApplicationController
     end
   end
 
-  # def line_carousel(form)
-  #   bubbles = []
-  #   bubbles.push line_bubble(form)
-  #   if form.images.count >= 2
-  #     (form.post.images[1].image.url..form.post.images.last.image.url).each do |img|
-  #       binding.pry
-  #       bubbles.push image_bubble(img)
-  #     end
-  #   end
-
-  #   {
-  #     type: 'carousel',
-  #     contents: bubbles
-  #   }
-  # end
-
   def line_carousel(form)
     bubbles = []
     form.post.images.each_with_index do |img, i|
-      if i == 0
+      if i.zero?
         bubbles.push line_bubble(form)
       else
         bubbles.push image_bubble(img.image.url)
       end
     end
-    {
-      type: 'carousel',
-      contents: bubbles
-    }
+    { type: 'carousel', contents: bubbles }
   end
 
   def line_bubble(form)
@@ -99,9 +80,7 @@ class PostsController < ApplicationController
     {
       type: 'image',
       url: form.post.images[0].image.url.to_s,
-      size: 'full',
-      aspectRatio: '4:3',
-      aspectMode: 'cover',
+      size: 'full', aspectRatio: '4:3', aspectMode: 'cover',
       action: { type: 'uri', uri: form.post.images[0].image.url.to_s }
     }
   end
@@ -144,16 +123,11 @@ class PostsController < ApplicationController
     {
       type: 'bubble',
       body: {
-        type: 'box',
-        layout: 'vertical',
+        type: 'box', layout: 'vertical',
         contents: [
           {
-            type: 'image',
-            url: img.to_s,
-            size: 'full',
-            aspectMode: 'cover',
-            aspectRatio: '1:1',
-            gravity: 'center',
+            type: 'image', url: img.to_s, size: 'full',
+            aspectMode: 'cover', aspectRatio: '1:1', gravity: 'center',
             action: { type: 'uri', label: 'action', uri: img.to_s }
           }
         ],
