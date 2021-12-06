@@ -36,4 +36,116 @@
       opacity: 0.3;
     }
   }
-};
+}
+
+;
+
+#image-box-1 {
+  display: flex;
+  height: 180px;
+  width: 100%;
+  text-align: center;
+
+  i {
+    padding-top: 50px;
+    cursor: pointer;
+  }
+
+  .item-num-0#image-box__container {
+    background-color: rgb(245, 245, 245);
+    height: 100%;
+    width: 100%;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    text-align: center;
+  }
+
+  .item-num-1 {
+    background-color: rgb(245, 245, 245);
+    height: 100%;
+    width: 100%;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    text-align: center;
+  }
+
+  .item-num-2 {
+    background-color: rgb(245, 245, 245);
+    height: 100%;
+    width: 100%;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    text-align: center;
+  }
+
+  .item-num-3 {
+    background-color: rgb(245, 245, 245);
+    height: 100%;
+    width: 100%;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    text-align: center;
+  }
+
+  .item-num-4 {
+    background-color: rgb(245, 245, 245);
+    height: 100%;
+    width: 100%;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    text-align: center;
+
+  }
+
+  .item-num-5 {
+    background-color: rgb(245, 245, 245);
+    height: 100%;
+    width: 0%;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    text-align: center;
+  }
+}
+
+.svg-inline--fa.fa-image.fa-w-16 {
+  font-size: 500%;
+  margin-top: 4%;
+}
+
+//レビュー表示のCSS
+.item-image {
+  height: 180px;
+  width: 200px;
+  border: 1px solid #eee;
+  margin-right: 10px;
+
+  .item-image__content {
+    padding-top: 10px;
+  }
+
+  .item-image__operetion {
+    height: 40px;
+
+    .item-image__operetion--delete {
+      height: 40px;
+      color: #00b0ff;
+      cursor: pointer;
+      padding-top: 5px;
+      text-align: center;
+      border: 1px solid #eee;
+      background-color: #EEEEEE;
+    }
+  }
+}
