@@ -17,15 +17,4 @@ ja:
         stole_location: '盗難場所'
         contact: '目撃情報連絡先'
         stole_time: '盗難日時'
-      image:
-        image: '写真'
-  activemodel:
-    attributes:
-      post_form:
-        car_name: '車名'
-        car_model: '型式'
-        car_number: '車のナンバー'
-        stole_location: '盗難場所'
-        contact: '目撃情報連絡先'
-        stole_time: '盗難日時'
         images: '車の画像'

@@ -44,7 +44,7 @@ class PostsController < ApplicationController # rubocop:disable Metrics/ClassLen
 
   def post_params
     params.require(:post).permit(:car_name, :car_model, :car_number, :stole_time,
-                                 :stole_location, :contact, { images: [] })
+                                 :stole_location, :contact, { images: [] }, :image_cache)
           .merge(user_id: current_user.id)
   end
 

@@ -28,26 +28,15 @@
         = f.label :contact
         .control
           = f.text_field :contact, class: 'input is-normal'
-      / .field
-      /   = f.label :images
-      /   .control
-      /     = f.file_field :images, multiple: true, class: 'input is-normal'
-      /   #preview
-      / #image-box
-      /   #image-box-1
-      /     .item-num-0#image-box__container
-      /       label for="post_images"
-      /         i.fas.fa-camera#image-box-icon
-      /   #image-box-2
-      /     = f.file_field :images, multiple: true, value:"", id:"img-file"
-          / = f.fields_for :images do |i|
-          /   .input-field__contents
-          /     = i.file_field :image, type: 'file'
       .field
-        #image-box-1
-          .item-num-0#image-box__container
-            .input-area
-              = f.file_field :images, multiple: true, value:"", style: "display:none", id:"img-file"
-              label for="img-file"
-                f.far.fa-image
+        .control
+          .post-image-container
+            .prev-content
+            .label-content
+              label#label-box-0.label-box for="post_image_0"
+                pre.label-box__text-visible クリックしてファイルをアップロード
+            .hidden-content
+              = f.file_field :images, multiple: true, id: "post_image_0", class: "hidden-field"
+              = f.hidden_field :image_cache
+
       = f.submit t('.submit'), class: 'button is-primary'

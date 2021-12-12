@@ -1,6 +1,8 @@
 class PostForm # rubocop:disable Metrics/ClassLength
   include ActiveModel::Model
   include ActiveModel::Attributes
+  extend CarrierWave::Mount
+  mount_uploader :image, ImageUploader
 
   attribute :car_name, :string
   attribute :car_model, :string
