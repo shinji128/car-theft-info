@@ -142,8 +142,6 @@ GEM
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    font-awesome-sass (5.15.1)
-      sassc (>= 1.11)
     formatador (0.3.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -364,7 +362,6 @@ DEPENDENCIES
   byebug
   carrierwave (= 2.2.2)
   fog-aws
-  font-awesome-sass
   html2slim
   httpclient
   jbuilder (~> 2.7)

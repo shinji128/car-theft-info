@@ -15,7 +15,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'slim-rails'
 gem 'bulma-rails'
-gem 'font-awesome-sass'
 gem 'sorcery'
 gem 'carrierwave', '2.2.2'
 gem 'line-bot-api'
