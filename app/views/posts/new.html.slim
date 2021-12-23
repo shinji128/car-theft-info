@@ -29,13 +29,13 @@
         .control
           = f.text_field :contact, class: 'input is-normal'
       .field
-        = f.label :images
+        = f.label :'a'
           .control
             .post-image-container
               .prev-content
               .label-content
                 label#label-box-0.label-box for="post_image_0"
-                  pre.label-box__text-visible クリックしてファイルをアップロード
+                  pre.label-box__text-visible クリックで車の画像をアップロード
               .hidden-content
                 = f.fields_for :images do |i|
                   = i.file_field :image, class: "hidden-field", id: "post_image_0", name: "post[images][0][image]"
