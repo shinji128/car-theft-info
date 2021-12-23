@@ -30,6 +30,17 @@
           = f.text_field :contact, class: 'input is-normal'
       .field
         = f.label :images
-        .control
-          = f.file_field :images, multiple: true, class: 'input is-normal'
+          .control
+            .post-image-container
+              .prev-content
+              .label-content
+                label#label-box-0.label-box for="post_image_0"
+                  pre.label-box__text-visible クリックで車の画像をアップロード
+              .hidden-content
+                = f.fields_for :images do |i|
+                  = i.file_field :image, class: "hidden-field", id: "post_image_0", name: "post[images][0][image]"
+                  input#post_image_1.hidden-field name="post[images][1][image]" type="file" /
+                  input#post_image_2.hidden-field name="post[images][2][image]" type="file" /
+                  input#post_image_3.hidden-field name="post[images][3][image]" type="file" /
+                  input#post_image_4.hidden-field name="post[images][4][image]" type="file" /
       = f.submit t('.submit'), class: 'button is-primary'

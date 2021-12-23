@@ -1,6 +1,8 @@
 class PostForm # rubocop:disable Metrics/ClassLength
   include ActiveModel::Model
   include ActiveModel::Attributes
+  extend CarrierWave::Mount
+  mount_uploader :image, ImageUploader
 
   attribute :car_name, :string
   attribute :car_model, :string
@@ -35,8 +37,10 @@ class PostForm # rubocop:disable Metrics/ClassLength
       self.post = Post.new(post_params)
       post.save
 
-      images.each do |image|
-        post.images.create!(image: image)
+      i = 0
+      while i < images.count
+        post.images.create!(image: images[i.to_s]['image'])
+        i += 1
       end
     end
     true
@@ -105,12 +109,16 @@ class PostForm # rubocop:disable Metrics/ClassLength
     return false if images.blank?
 
     extension_allowlist = %w[image/jpg image/jpeg image/png]
-    images&.each do |image|
-      if !extension_allowlist.include?(image.content_type)
+    i = 0
+    while i < images.count
+      if !extension_allowlist.include?(images[i.to_s]['image'].content_type)
         errors.add(:images, 'は jpg/jpeg/png のみアップロードできます')
+        break
       elsif image.size > 3.megabyte
         errors.add(:images, '3MBまでアップロードできます')
+        break
       end
+      i += 1
     end
   end
 

@@ -17,8 +17,6 @@ ja:
         stole_location: '盗難場所'
         contact: '目撃情報連絡先'
         stole_time: '盗難日時'
-      image:
-        image: '写真'
   activemodel:
     attributes:
       post_form:
