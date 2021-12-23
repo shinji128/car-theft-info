@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function UpdateId(id) {
       $('.label-box').attr({id: `label-box-${id}`,for: `post_image_${id}`});
-      $('.hidden-field').attr({id: `post_image_${id}`});
     }
 
     $(document).on('change', '.hidden-field', function() {
