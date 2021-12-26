@@ -6,8 +6,8 @@ class AmazonRekognitonsController < ApplicationController
     result = client.detect_labels({
       image: {
         s3_object: {
-          bucket: 'rekognition-console-sample-images-prod-pdx',
-          name: 'landscape.jpg'
+          bucket: 'car-theft-info',
+          name: 'uploads/image/image/15/NAロードスター.jpeg'
         }
       }
     })
