@@ -1,0 +1,3 @@
+class AmazonRekognition < ApplicationRecord
+
+end
